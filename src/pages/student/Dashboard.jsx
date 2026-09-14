@@ -1,7 +1,9 @@
+import React, { useState } from "react";
 import "../../styles/dashboard.css";
+import Classes from "./Classes";
 
 const navigation = [
-  { label: "Dashboard", icon: "home", active: true },
+  { label: "Dashboard", icon: "home" },
   { label: "My Classes", icon: "book" },
   { label: "Timetable", icon: "calendar" },
   { label: "Attendance", icon: "check" },
@@ -248,6 +250,14 @@ function Icon({ name, size = 22 }) {
 }
 
 function Dashboard() {
+  const [currentPage, setCurrentPage] = useState("Dashboard");
+
+  const handleNavigation = (label) => {
+    if (label === "Dashboard" || label === "My Classes") {
+      setCurrentPage(label);
+    }
+  };
+
   return (
     <div className="dashboard-page">
       <aside className="dashboard-sidebar">
@@ -268,7 +278,10 @@ function Dashboard() {
             <button
               type="button"
               key={item.label}
-              className={`navigation-item ${item.active ? "active" : ""}`}
+              className={`navigation-item ${
+                currentPage === item.label ? "active" : ""
+              }`}
+              onClick={() => handleNavigation(item.label)}
             >
               <Icon name={item.icon} size={21} />
               <span>{item.label}</span>
@@ -326,303 +339,329 @@ function Dashboard() {
           </div>
         </header>
 
-        <section className="welcome-banner">
-          <div className="welcome-content">
-            <span className="welcome-small">
-              Welcome back,
-            </span>
+        {currentPage === "My Classes" ? (
+          <Classes />
+        ) : (
+          <>
+            <section className="welcome-banner">
+              <div className="welcome-content">
+                <span className="welcome-small">
+                  Welcome back,
+                </span>
 
-            <h1>Thabo Molefe</h1>
+                <h1>Thabo Molefe</h1>
 
-            <p>
-              Here's your school overview for today.
-            </p>
-          </div>
-        </section>
-
-        <section className="summary-grid">
-          <div className="summary-card classes-card">
-            <div className="summary-icon">
-              <Icon name="book" size={27} />
-            </div>
-
-            <div className="summary-content">
-              <span>My Classes</span>
-              <strong>6</strong>
-
-              <button type="button">
-                View my classes
-                <Icon name="arrow" size={16} />
-              </button>
-            </div>
-          </div>
-
-          <div className="summary-card attendance-card">
-            <div className="summary-icon">
-              <Icon name="calendar" size={27} />
-            </div>
-
-            <div className="summary-content">
-              <span>Attendance</span>
-              <strong>94%</strong>
-
-              <small>↑ 2% from last week</small>
-            </div>
-          </div>
-
-          <div className="summary-card assignments-card">
-            <div className="summary-icon">
-              <Icon name="file" size={27} />
-            </div>
-
-            <div className="summary-content">
-              <span>Assignments</span>
-              <strong>3</strong>
-
-              <button type="button">
-                View assignments
-                <Icon name="arrow" size={16} />
-              </button>
-            </div>
-          </div>
-
-          <div className="summary-card results-card">
-            <div className="summary-icon">
-              <Icon name="results" size={27} />
-            </div>
-
-            <div className="summary-content">
-              <span>Results</span>
-              <strong>78%</strong>
-
-              <small>↑ 5% from last term</small>
-
-              <button type="button">
-                View results
-                <Icon name="arrow" size={16} />
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section className="dashboard-grid">
-          <div className="dashboard-column large-column">
-            <div className="dashboard-card timetable-card">
-              <div className="card-header">
-                <div className="card-title">
-                  <Icon name="calendar" size={23} />
-                  <h2>Today's Timetable</h2>
-                </div>
-
-                <div className="date-selector">
-                  Monday, 28 April 2025
-                  <span>‹</span>
-                  <span>›</span>
-                </div>
-              </div>
-
-              <div className="timetable-list">
-                {timetable.map((item) => (
-                  <div
-                    className="timetable-row"
-                    key={item.time}
-                  >
-                    <div
-                      className={`time-marker ${item.color}`}
-                    ></div>
-
-                    <div className="lesson-time">
-                      {item.time}
-                    </div>
-
-                    <div className="lesson-info">
-                      <strong>{item.subject}</strong>
-                      <span>{item.room}</span>
-                    </div>
-
-                    <span
-                      className={`lesson-status ${item.status === "Ongoing" ? "ongoing" : ""}`}
-                    >
-                      {item.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="quote-card">
-              <div>
-                <span>—</span>
                 <p>
-                  Discipline today
-                  <br />
-                  builds success tomorrow.
+                  Here's your school overview for today.
                 </p>
               </div>
+            </section>
 
-              <img
-                src="/student6.jpg"
-                alt="Students studying"
-              />
-            </div>
-          </div>
-
-          <div className="dashboard-column middle-column">
-            <div className="dashboard-card assignments-panel">
-              <div className="card-header">
-                <div className="card-title">
-                  <Icon name="file" size={22} />
-                  <h2>Recent Assignments</h2>
+            <section className="summary-grid">
+              <div className="summary-card classes-card">
+                <div className="summary-icon">
+                  <Icon name="book" size={27} />
                 </div>
 
-                <button
-                  type="button"
-                  className="view-all"
-                >
-                  View all
-                  <Icon name="arrow" size={15} />
-                </button>
-              </div>
+                <div className="summary-content">
+                  <span>My Classes</span>
+                  <strong>6</strong>
 
-              <div className="assignment-list">
-                {assignments.map((assignment) => (
-                  <div
-                    className="assignment-row"
-                    key={assignment.title}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage("My Classes")}
                   >
-                    <div
-                      className={`assignment-icon ${assignment.color}`}
-                    >
-                      <Icon name="file" size={18} />
-                    </div>
-
-                    <div className="assignment-info">
-                      <strong>{assignment.subject}</strong>
-                      <span>{assignment.title}</span>
-                      <small>{assignment.due}</small>
-                    </div>
-
-                    <span
-                      className={`assignment-status ${assignment.status
-                        .toLowerCase()
-                        .replace(" ", "-")}`}
-                    >
-                      {assignment.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="dashboard-card quick-links">
-              <div className="card-header">
-                <div className="card-title">
-                  <Icon name="lightning" size={22} />
-                  <h2>Quick Links</h2>
+                    View my classes
+                    <Icon name="arrow" size={16} />
+                  </button>
                 </div>
               </div>
 
-              <div className="quick-link-grid">
-                <button type="button" className="quick-link purple">
-                  <Icon name="file" size={21} />
-                  <span>Submit Assignment</span>
-                </button>
-
-                <button type="button" className="quick-link green">
-                  <Icon name="results" size={21} />
-                  <span>Check Results</span>
-                </button>
-
-                <button type="button" className="quick-link blue">
-                  <Icon name="calendar" size={21} />
-                  <span>View Timetable</span>
-                </button>
-
-                <button type="button" className="quick-link red">
-                  <Icon name="message" size={21} />
-                  <span>Messages</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="dashboard-column right-column">
-            <div className="dashboard-card announcements-panel">
-              <div className="card-header">
-                <div className="card-title">
-                  <Icon name="megaphone" size={22} />
-                  <h2>Announcements</h2>
+              <div className="summary-card attendance-card">
+                <div className="summary-icon">
+                  <Icon name="calendar" size={27} />
                 </div>
 
-                <button
-                  type="button"
-                  className="view-all"
-                >
-                  View all
-                  <Icon name="arrow" size={15} />
-                </button>
+                <div className="summary-content">
+                  <span>Attendance</span>
+                  <strong>94%</strong>
+
+                  <small>↑ 2% from last week</small>
+                </div>
               </div>
 
-              <div className="announcement-list">
-                {announcements.map((announcement) => (
-                  <div
-                    className="announcement-row"
-                    key={announcement.title}
-                  >
-                    <span
-                      className={`announcement-dot ${announcement.color}`}
-                    ></span>
-
-                    <div className="announcement-info">
-                      <strong>{announcement.title}</strong>
-                      <p>{announcement.text}</p>
-                    </div>
-
-                    <time>{announcement.date}</time>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="dashboard-card events-panel">
-              <div className="card-header">
-                <div className="card-title">
-                  <Icon name="calendar" size={21} />
-                  <h2>Upcoming Events</h2>
+              <div className="summary-card assignments-card">
+                <div className="summary-icon">
+                  <Icon name="file" size={27} />
                 </div>
 
-                <button
-                  type="button"
-                  className="view-all"
-                >
-                  View all
-                  <Icon name="arrow" size={15} />
-                </button>
+                <div className="summary-content">
+                  <span>Assignments</span>
+                  <strong>3</strong>
+
+                  <button type="button">
+                    View assignments
+                    <Icon name="arrow" size={16} />
+                  </button>
+                </div>
               </div>
 
-              <div className="event-list">
-                {events.map((event) => (
-                  <div
-                    className="event-row"
-                    key={event.title}
-                  >
-                    <div
-                      className={`event-date ${event.color}`}
-                    >
-                      <strong>{event.day}</strong>
-                      <span>{event.month}</span>
+              <div className="summary-card results-card">
+                <div className="summary-icon">
+                  <Icon name="results" size={27} />
+                </div>
+
+                <div className="summary-content">
+                  <span>Results</span>
+                  <strong>78%</strong>
+
+                  <small>↑ 5% from last term</small>
+
+                  <button type="button">
+                    View results
+                    <Icon name="arrow" size={16} />
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section className="dashboard-grid">
+              <div className="dashboard-column large-column">
+                <div className="dashboard-card timetable-card">
+                  <div className="card-header">
+                    <div className="card-title">
+                      <Icon name="calendar" size={23} />
+                      <h2>Today's Timetable</h2>
                     </div>
 
-                    <div className="event-info">
-                      <strong>{event.title}</strong>
-                      <span>{event.details}</span>
+                    <div className="date-selector">
+                      Monday, 28 April 2025
+                      <span>‹</span>
+                      <span>›</span>
                     </div>
                   </div>
-                ))}
+
+                  <div className="timetable-list">
+                    {timetable.map((item) => (
+                      <div
+                        className="timetable-row"
+                        key={item.time}
+                      >
+                        <div
+                          className={`time-marker ${item.color}`}
+                        ></div>
+
+                        <div className="lesson-time">
+                          {item.time}
+                        </div>
+
+                        <div className="lesson-info">
+                          <strong>{item.subject}</strong>
+                          <span>{item.room}</span>
+                        </div>
+
+                        <span
+                          className={`lesson-status ${
+                            item.status === "Ongoing"
+                              ? "ongoing"
+                              : ""
+                          }`}
+                        >
+                          {item.status}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="quote-card">
+                  <div>
+                    <span>—</span>
+
+                    <p>
+                      Discipline today
+                      <br />
+                      builds success tomorrow.
+                    </p>
+                  </div>
+
+                  <img
+                    src="/student6.jpg"
+                    alt="Students studying"
+                  />
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
+
+              <div className="dashboard-column middle-column">
+                <div className="dashboard-card assignments-panel">
+                  <div className="card-header">
+                    <div className="card-title">
+                      <Icon name="file" size={22} />
+                      <h2>Recent Assignments</h2>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="view-all"
+                    >
+                      View all
+                      <Icon name="arrow" size={15} />
+                    </button>
+                  </div>
+
+                  <div className="assignment-list">
+                    {assignments.map((assignment) => (
+                      <div
+                        className="assignment-row"
+                        key={assignment.title}
+                      >
+                        <div
+                          className={`assignment-icon ${assignment.color}`}
+                        >
+                          <Icon name="file" size={18} />
+                        </div>
+
+                        <div className="assignment-info">
+                          <strong>{assignment.subject}</strong>
+                          <span>{assignment.title}</span>
+                          <small>{assignment.due}</small>
+                        </div>
+
+                        <span
+                          className={`assignment-status ${assignment.status
+                            .toLowerCase()
+                            .replace(" ", "-")}`}
+                        >
+                          {assignment.status}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="dashboard-card quick-links">
+                  <div className="card-header">
+                    <div className="card-title">
+                      <Icon name="lightning" size={22} />
+                      <h2>Quick Links</h2>
+                    </div>
+                  </div>
+
+                  <div className="quick-link-grid">
+                    <button
+                      type="button"
+                      className="quick-link purple"
+                    >
+                      <Icon name="file" size={21} />
+                      <span>Submit Assignment</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className="quick-link green"
+                    >
+                      <Icon name="results" size={21} />
+                      <span>Check Results</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className="quick-link blue"
+                    >
+                      <Icon name="calendar" size={21} />
+                      <span>View Timetable</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className="quick-link red"
+                    >
+                      <Icon name="message" size={21} />
+                      <span>Messages</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="dashboard-column right-column">
+                <div className="dashboard-card announcements-panel">
+                  <div className="card-header">
+                    <div className="card-title">
+                      <Icon name="megaphone" size={22} />
+                      <h2>Announcements</h2>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="view-all"
+                    >
+                      View all
+                      <Icon name="arrow" size={15} />
+                    </button>
+                  </div>
+
+                  <div className="announcement-list">
+                    {announcements.map((announcement) => (
+                      <div
+                        className="announcement-row"
+                        key={announcement.title}
+                      >
+                        <span
+                          className={`announcement-dot ${announcement.color}`}
+                        ></span>
+
+                        <div className="announcement-info">
+                          <strong>{announcement.title}</strong>
+                          <p>{announcement.text}</p>
+                        </div>
+
+                        <time>{announcement.date}</time>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="dashboard-card events-panel">
+                  <div className="card-header">
+                    <div className="card-title">
+                      <Icon name="calendar" size={21} />
+                      <h2>Upcoming Events</h2>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="view-all"
+                    >
+                      View all
+                      <Icon name="arrow" size={15} />
+                    </button>
+                  </div>
+
+                  <div className="event-list">
+                    {events.map((event) => (
+                      <div
+                        className="event-row"
+                        key={event.title}
+                      >
+                        <div
+                          className={`event-date ${event.color}`}
+                        >
+                          <strong>{event.day}</strong>
+                          <span>{event.month}</span>
+                        </div>
+
+                        <div className="event-info">
+                          <strong>{event.title}</strong>
+                          <span>{event.details}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
       </main>
     </div>
   );
