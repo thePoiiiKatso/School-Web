@@ -17,7 +17,7 @@ import Messages from "../pages/admin/Messages";
 import Settings from "../pages/admin/Settings";
 import "../styles/admin/admin.css";
 
-function AdminLayout() {
+function AdminLayout({ user, role = "admin", onSwitchRole, onLogout }) {
   const [currentPage, setCurrentPage] = useState("Dashboard");
 
   const renderPage = () => {
@@ -52,9 +52,19 @@ function AdminLayout() {
 
   return (
     <div className="admin-page">
-      <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Sidebar
+        role="admin"
+        currentPage={currentPage}
+        onNavigate={setCurrentPage}
+      />
       <div className="admin-main">
-        <Navbar />
+        <Navbar
+          role="admin"
+          userName={user?.name || "Admin User"}
+          userRole="Administrator"
+          onSwitchRole={onSwitchRole}
+          onLogout={onLogout}
+        />
         <div className="admin-content">
           {renderPage()}
         </div>

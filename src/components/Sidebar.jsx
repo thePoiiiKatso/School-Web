@@ -1,6 +1,6 @@
 import Icon from "./Icon";
 
-const navigationItems = [
+const adminItems = [
   { label: "Dashboard", icon: "home" },
   { label: "Students", icon: "users" },
   { label: "Teachers", icon: "user" },
@@ -17,10 +17,30 @@ const navigationItems = [
   { label: "Settings", icon: "settings" },
 ];
 
-function Sidebar({ currentPage, onNavigate }) {
+const teacherItems = [
+  { label: "Dashboard", icon: "home" },
+  { label: "My Classes", icon: "book" },
+  { label: "Attendance", icon: "check" },
+  { label: "Assignments", icon: "clipboard" },
+  { label: "Exams", icon: "exam" },
+  { label: "Resources", icon: "file" },
+  { label: "Messages", icon: "message" },
+  { label: "Profile", icon: "user" },
+];
+
+function Sidebar({ role = "admin", currentPage, onNavigate }) {
+  const isTeacher = role === "teacher";
+  const items = isTeacher ? teacherItems : adminItems;
+  const className = isTeacher ? "teacher-sidebar" : "admin-sidebar";
+  const brandClass = isTeacher ? "teacher-sidebar-brand" : "admin-sidebar-brand";
+  const navClass = isTeacher ? "teacher-sidebar-nav" : "admin-sidebar-nav";
+  const navItemClass = isTeacher ? "teacher-nav-item" : "admin-nav-item";
+  const footerClass = isTeacher ? "teacher-sidebar-footer" : "admin-sidebar-footer";
+  const lineClass = isTeacher ? "teacher-sidebar-line" : "admin-sidebar-line";
+
   return (
-    <aside className="admin-sidebar">
-      <div className="admin-sidebar-brand">
+    <aside className={className}>
+      <div className={brandClass}>
         <img src="/logo.png" alt="Bokamoso jwa Rona School Logo" />
         <div>
           <strong>Bokamoso jwa Rona</strong>
@@ -28,14 +48,12 @@ function Sidebar({ currentPage, onNavigate }) {
         </div>
       </div>
 
-      <nav className="admin-sidebar-nav">
-        {navigationItems.map((item) => (
+      <nav className={navClass}>
+        {items.map((item) => (
           <button
             type="button"
             key={item.label}
-            className={`admin-nav-item ${
-              currentPage === item.label ? "active" : ""
-            }`}
+            className={`${navItemClass} ${currentPage === item.label ? "active" : ""}`}
             onClick={() => onNavigate(item.label)}
           >
             <Icon name={item.icon} size={20} />
@@ -44,10 +62,19 @@ function Sidebar({ currentPage, onNavigate }) {
         ))}
       </nav>
 
-      <div className="admin-sidebar-footer">
-        <div className="admin-sidebar-line"></div>
-        <p>Better Education</p>
-        <strong>Brighter Futures</strong>
+      <div className={footerClass}>
+        <div className={lineClass}></div>
+        {isTeacher ? (
+          <>
+            <p>Teach</p>
+            <strong>Inspire. Build.</strong>
+          </>
+        ) : (
+          <>
+            <p>Better Education</p>
+            <strong>Brighter Futures</strong>
+          </>
+        )}
       </div>
     </aside>
   );
