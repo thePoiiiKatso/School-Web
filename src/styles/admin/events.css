@@ -1,0 +1,292 @@
+.admin-events-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 20px;
+  align-items: start;
+  flex-shrink: 0;
+}
+
+.admin-events-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.admin-events-side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.admin-mini-stats-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.admin-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-event-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.admin-event-card:hover {
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+.admin-event-date {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+  color: #ffffff;
+  text-align: center;
+}
+
+.admin-event-date.blue { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); }
+.admin-event-date.purple { background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); }
+.admin-event-date.green { background: linear-gradient(135deg, #16a34a 0%, #166534 100%); }
+.admin-event-date.orange { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); }
+.admin-event-date.pink { background: linear-gradient(135deg, #db2777 0%, #9d174d 100%); }
+.admin-event-date.yellow { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
+
+.admin-event-date strong {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.admin-event-date span {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  opacity: 0.95;
+  margin-top: 2px;
+}
+
+.admin-event-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-event-info h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.admin-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.admin-event-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  color: #64748b;
+}
+
+.admin-event-type {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.admin-event-type.sports { background: #dcfce7; color: #166534; }
+.admin-event-type.academic { background: #dbeafe; color: #1e40af; }
+.admin-event-type.meeting { background: #ede9fe; color: #5b21b6; }
+.admin-event-type.holiday { background: #fef3c7; color: #92400e; }
+.admin-event-type.culture { background: #fce7f3; color: #9d174d; }
+
+.admin-event-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.admin-highlight-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-highlight-header {
+  padding: 22px;
+  color: #ffffff;
+}
+
+.admin-highlight-header.blue { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); }
+.admin-highlight-header.purple { background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); }
+.admin-highlight-header.green { background: linear-gradient(135deg, #16a34a 0%, #166534 100%); }
+.admin-highlight-header.orange { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); }
+
+.admin-highlight-header span.next-event-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.admin-highlight-header h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.admin-highlight-header p.date {
+  margin: 0;
+  font-size: 0.82rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.admin-highlight-body {
+  padding: 18px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-highlight-info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #334155;
+}
+
+.admin-highlight-info-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-highlight-description {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.55;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.admin-view-details-btn {
+  width: 100%;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  transition: background 0.15s;
+}
+
+.admin-view-details-btn:hover { background: #1d4ed8; }
+
+.admin-quick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-quick-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 0.82rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+.admin-quick-list-item:hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.admin-quick-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1400px) {
+  .admin-events-layout { grid-template-columns: minmax(0, 1fr) 300px; }
+}
+
+@media (max-width: 1280px) {
+  .admin-events-layout { grid-template-columns: minmax(0, 1fr) 280px; }
+  .admin-mini-stats-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .admin-events-layout { grid-template-columns: 1fr; }
+}

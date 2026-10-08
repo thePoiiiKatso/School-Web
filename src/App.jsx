@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Login from "./pages/Login";
-import Dashboard from "./pages/student/Dashboard";
+import AdminLayout from "./layouts/AdminLayout";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,7 +17,7 @@ function App() {
   };
 
   return isLoggedIn ? (
-    <Dashboard user={user} onLogout={handleLogout} />
+    <AdminLayout user={user} onLogout={handleLogout} />
   ) : (
     <Login onLogin={handleLogin} />
   );
