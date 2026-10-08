@@ -1,0 +1,300 @@
+.admin-attendance-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 300px;
+  gap: 20px;
+  align-items: start;
+  flex-shrink: 0;
+}
+
+.admin-attendance-side-left,
+.admin-attendance-side-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.admin-attendance-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.admin-mini-stats-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.admin-class-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-class-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 0.85rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+.admin-class-list-item:hover {
+  background: #f1f5f9;
+}
+
+.admin-class-list-item.active {
+  background: #eff6ff;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.admin-class-list-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.admin-class-list-dot.blue { background: #2563eb; }
+.admin-class-list-dot.green { background: #16a34a; }
+.admin-class-list-dot.purple { background: #7c3aed; }
+.admin-class-list-dot.orange { background: #ea580c; }
+.admin-class-list-dot.pink { background: #db2777; }
+
+.admin-class-list-name {
+  flex: 1;
+}
+
+.admin-class-list-count {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.admin-class-list-item.active .admin-class-list-count {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.admin-attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+  table-layout: auto;
+}
+
+.admin-attendance-table thead th {
+  text-align: left;
+  padding: 10px 10px;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  font-weight: 600;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.admin-attendance-table tbody td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+  font-size: 0.83rem;
+  white-space: nowrap;
+}
+
+.admin-attendance-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.admin-attendance-table th:nth-child(1),
+.admin-attendance-table td:nth-child(1) {
+  width: 40px;
+  text-align: center;
+}
+
+.admin-attendance-table th:nth-child(2),
+.admin-attendance-table td:nth-child(2) {
+  min-width: 170px;
+}
+
+.admin-attendance-table th:last-child,
+.admin-attendance-table td:last-child {
+  width: 60px;
+  text-align: right;
+}
+
+.admin-student-number {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.admin-student-photo-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.admin-student-photo-cell strong {
+  font-size: 0.83rem;
+  color: #0f172a;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.admin-status-pill.present { background: #dcfce7; color: #166534; }
+.admin-status-pill.absent { background: #fee2e2; color: #991b1b; }
+.admin-status-pill.late { background: #fef3c7; color: #92400e; }
+
+.admin-attendance-rate-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-attendance-rate-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-rate-donut {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+}
+
+.admin-rate-donut-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.admin-rate-donut-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.admin-rate-donut-text strong {
+  font-size: 1.15rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.admin-rate-donut-text span {
+  font-size: 0.66rem;
+  color: #64748b;
+}
+
+.admin-rate-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-rate-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #334155;
+}
+
+.admin-rate-legend-row strong {
+  margin-left: auto;
+  color: #0f172a;
+}
+
+.admin-rate-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.admin-rate-dot.blue { background: #2563eb; }
+.admin-rate-dot.red { background: #ef4444; }
+.admin-rate-dot.purple { background: #8b5cf6; }
+
+.admin-date-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 0.83rem;
+  color: #334155;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.admin-small-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-size: 0.83rem;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.admin-small-btn:hover { background: #f1f5f9; }
+
+@media (max-width: 1400px) {
+  .admin-attendance-layout { grid-template-columns: 200px minmax(0, 1fr) 280px; }
+}
+
+@media (max-width: 1280px) {
+  .admin-attendance-layout { grid-template-columns: 1fr 1fr; }
+  .admin-attendance-side-left { grid-column: 1 / -1; flex-direction: row; }
+  .admin-mini-stats-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .admin-attendance-layout { grid-template-columns: 1fr; }
+}

@@ -9,7 +9,7 @@ const classes = [
     nextLesson: "Monday, 08:00 - 09:00",
     room: "A12",
     attendance: 94,
-    image: "/class-images/maths2.jpg",
+    image: "/maths2.jpg",
     icon: "∑",
   },
   {
@@ -19,7 +19,7 @@ const classes = [
     nextLesson: "Monday, 09:00 - 10:00",
     room: "B04",
     attendance: 91,
-    image: "/class-images/maths3.jpg",
+    image: "/maths3.jpg",
     icon: "Aa",
   },
   {
@@ -29,7 +29,7 @@ const classes = [
     nextLesson: "Tuesday, 08:00 - 09:00",
     room: "C02",
     attendance: 96,
-    image: "/class-images/science.jpg",
+    image: "/science.jpg",
     icon: "⚗",
   },
   {
@@ -39,7 +39,7 @@ const classes = [
     nextLesson: "Tuesday, 10:00 - 11:00",
     room: "Computer Lab",
     attendance: 98,
-    image: "/class-images/computer.jpg",
+    image: "/computer.jpg",
     icon: "</>",
   },
   {
@@ -49,7 +49,7 @@ const classes = [
     nextLesson: "Wednesday, 08:00 - 09:00",
     room: "B06",
     attendance: 92,
-    image: "/class-images/setswana.jpg",
+    image: "/setswana.jpg",
     icon: "S",
   },
   {
@@ -59,7 +59,7 @@ const classes = [
     nextLesson: "Wednesday, 09:00 - 10:00",
     room: "A08",
     attendance: 90,
-    image: "/class-images/life-orientation.jpg",
+    image: "/life-orientation.jpg",
     icon: "♡",
   },
 ];
@@ -71,6 +71,7 @@ function Classes() {
 
   return (
     <div className="classes-page">
+      {/* Hero Section */}
       <section className="classes-hero">
         <div className="hero-overlay"></div>
 
@@ -89,6 +90,7 @@ function Classes() {
         </div>
       </section>
 
+      {/* Summary Section */}
       <section className="class-summary">
         <div className="summary-item">
           <div className="summary-icon">◆</div>
@@ -117,6 +119,7 @@ function Classes() {
 
           <div>
             <span>Next Lesson Today</span>
+
             <strong>
               Mathematics · 08:00 - 09:00
             </strong>
@@ -125,20 +128,26 @@ function Classes() {
 
         <div className="enrolled-badge">
           <span>✓</span>
+
           You are enrolled in {classes.length} classes this term.
         </div>
       </section>
 
+      {/* Classes Grid */}
       <section className="class-grid">
         {classes.map((subject) => (
           <article
             className="class-card"
             key={subject.name}
           >
+            {/* Class Image */}
             <div className="class-image">
               <img
                 src={subject.image}
                 alt={`${subject.name} class`}
+                onError={(event) => {
+                  event.currentTarget.style.display = "none";
+                }}
               />
 
               <div className="image-dark"></div>
@@ -148,6 +157,7 @@ function Classes() {
               </div>
             </div>
 
+            {/* Class Content */}
             <div className="class-body">
               <div className="class-heading">
                 <div>
@@ -164,6 +174,7 @@ function Classes() {
                   </div>
                 </div>
 
+                {/* Attendance */}
                 <div className="attendance-circle">
                   <strong>
                     {subject.attendance}%
@@ -175,6 +186,7 @@ function Classes() {
                 </div>
               </div>
 
+              {/* Class Information */}
               <div className="class-info">
                 <div>
                   <span className="info-label">
@@ -197,10 +209,16 @@ function Classes() {
                 </div>
               </div>
 
+              {/* Buttons */}
               <div className="card-actions">
                 <button
                   type="button"
                   className="details-button"
+                  onClick={() => {
+                    alert(
+                      `${subject.name} timetable will open soon.`
+                    );
+                  }}
                 >
                   View Details →
                 </button>
@@ -208,6 +226,11 @@ function Classes() {
                 <button
                   type="button"
                   className="timetable-button"
+                  onClick={() => {
+                    alert(
+                      `${subject.name} timetable will open soon.`
+                    );
+                  }}
                 >
                   ▣ Timetable
                 </button>
@@ -217,16 +240,16 @@ function Classes() {
         ))}
       </section>
 
+      {/* Notice */}
       <div className="classes-notice">
         <span className="notice-icon">i</span>
 
         <span>
-          View Details takes you directly to this
-          subject's timetable.
+          View Details takes you directly to this subject's timetable.
         </span>
 
         <strong>
-          Keep Going 
+          Keep Going
         </strong>
       </div>
     </div>

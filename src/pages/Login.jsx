@@ -29,10 +29,12 @@ const phrases = [
   "Education That Connects Us",
 ];
 
-function Login() {
+function Login({ onLogin }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,6 +57,11 @@ function Login() {
   }, []);
 
   const currentSlideData = slides[currentSlide];
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onLogin({ username });
+  };
 
   return (
     <div className="login-page">
@@ -165,11 +172,7 @@ function Login() {
               <p>Sign in to your account to continue.</p>
             </div>
 
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="username">
                   Email or Username
@@ -179,6 +182,8 @@ function Login() {
                   id="username"
                   type="text"
                   placeholder="Enter your email or username"
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
                   required
                 />
               </div>
@@ -199,6 +204,8 @@ function Login() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
                     required
                   />
 

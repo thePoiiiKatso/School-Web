@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../../styles/dashboard.css";
 import Classes from "./Classes";
+import Timetable from "./Timetable";
+import Attendance from "./Attendance";
+import Assignments from "./Assignments";
+import Exams from "./Exams"
+import Results from "./Results";
+import Announcements from "./Announcements";
+import Messages from "./Messages";
 
-const navigation = [
+const navigationItems = [
   { label: "Dashboard", icon: "home" },
   { label: "My Classes", icon: "book" },
   { label: "Timetable", icon: "calendar" },
@@ -13,7 +20,6 @@ const navigation = [
   { label: "Announcements", icon: "megaphone", badge: 2 },
   { label: "Messages", icon: "message" },
   { label: "Profile", icon: "user" },
-  { label: "Settings", icon: "settings" },
 ];
 
 const timetable = [
@@ -33,7 +39,7 @@ const timetable = [
   },
   {
     time: "10:30 - 11:30",
-    subject: "Life Orientation",
+    subject: "Life Skills",
     room: "Room 6",
     status: "Upcoming",
     color: "yellow",
@@ -54,7 +60,7 @@ const timetable = [
   },
   {
     time: "14:45 - 15:45",
-    subject: "History",
+    subject: "Social Studies",
     room: "Room 11",
     status: "Upcoming",
     color: "green",
@@ -77,8 +83,8 @@ const assignments = [
     color: "green",
   },
   {
-    subject: "Life Orientation",
-    title: "Project",
+    subject: "Life Skills",
+    title: "Class Project",
     due: "Due: 2 May 2025",
     status: "In Progress",
     color: "yellow",
@@ -88,44 +94,20 @@ const assignments = [
 const announcements = [
   {
     title: "School Fees Reminder",
-    text: "Please ensure that all school fees are paid before the end of this month...",
+    text: "Please check with the school office about any outstanding school fees.",
     date: "Apr 28",
     color: "red",
   },
   {
     title: "Inter-House Sports Day",
-    text: "The inter-house sports day will be held on 15 May 2025. All students are encouraged...",
+    text: "The inter-house sports day will be held on 15 May 2025.",
     date: "Apr 26",
     color: "yellow",
   },
   {
     title: "Exam Schedule Released",
-    text: "The mid-term exam timetable is now available on the portal. Kindly check your class...",
+    text: "The examination timetable is now available for learners and parents.",
     date: "Apr 24",
-    color: "green",
-  },
-];
-
-const events = [
-  {
-    day: "15",
-    month: "May",
-    title: "Inter-House Sports Day",
-    details: "School Ground • 08:00 AM",
-    color: "purple",
-  },
-  {
-    day: "22",
-    month: "May",
-    title: "Parent-Teacher Meeting",
-    details: "Main Hall • 02:00 PM",
-    color: "blue",
-  },
-  {
-    day: "30",
-    month: "May",
-    title: "End of Term 2",
-    details: "School • All Day",
     color: "green",
   },
 ];
@@ -139,14 +121,15 @@ function Icon({ name, size = 22 }) {
         <path d="M9.5 21v-6h5v6" />
       </>
     ),
+
     book: (
       <>
         <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z" />
         <path d="M4 5.5v16" />
-        <path d="M8 7h8" />
-        <path d="M8 11h7" />
+        <path d="M8 7h8M8 11h7" />
       </>
     ),
+
     calendar: (
       <>
         <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -154,29 +137,34 @@ function Icon({ name, size = 22 }) {
         <path d="M8 14h3M13 14h3M8 18h3" />
       </>
     ),
+
     check: (
       <>
         <circle cx="12" cy="12" r="9" />
         <path d="m8 12 2.5 2.5L16 9" />
       </>
     ),
+
     file: (
       <>
         <path d="M6 3h8l5 5v13H6z" />
         <path d="M14 3v6h5M9 13h6M9 17h6" />
       </>
     ),
+
     exam: (
       <>
         <rect x="4" y="3" width="16" height="18" rx="2" />
         <path d="M8 8h8M8 12h8M8 16h5" />
       </>
     ),
+
     results: (
       <>
         <path d="M5 20V10M12 20V4M19 20v-7" />
       </>
     ),
+
     megaphone: (
       <>
         <path d="m4 11 13-5v12L4 14z" />
@@ -184,50 +172,38 @@ function Icon({ name, size = 22 }) {
         <path d="m7 15 2 5" />
       </>
     ),
+
     message: (
       <>
         <rect x="3" y="5" width="18" height="14" rx="3" />
         <path d="m3 7 9 6 9-6" />
       </>
     ),
+
     user: (
       <>
         <circle cx="12" cy="8" r="4" />
         <path d="M4 21a8 8 0 0 1 16 0" />
       </>
     ),
-    settings: (
-      <>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.6v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6.4v-2.6h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.1h2.6v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1V14h-.1a1.7 1.7 0 0 0-1.5 1Z" />
-      </>
-    ),
+
     search: (
       <>
         <circle cx="10.5" cy="10.5" r="6.5" />
         <path d="m16 16 5 5" />
       </>
     ),
+
     bell: (
       <>
         <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
         <path d="M10 21h4" />
       </>
     ),
+
     arrow: (
       <>
         <path d="M5 12h14M13 6l6 6-6 6" />
-      </>
-    ),
-    lightning: (
-      <>
-        <path d="m13 2-9 12h7l-1 8 9-12h-7z" />
-      </>
-    ),
-    clock: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
       </>
     ),
   };
@@ -253,9 +229,7 @@ function Dashboard() {
   const [currentPage, setCurrentPage] = useState("Dashboard");
 
   const handleNavigation = (label) => {
-    if (label === "Dashboard" || label === "My Classes") {
-      setCurrentPage(label);
-    }
+    setCurrentPage(label);
   };
 
   return (
@@ -274,7 +248,7 @@ function Dashboard() {
         </div>
 
         <nav className="dashboard-navigation">
-          {navigation.map((item) => (
+          {navigationItems.map((item) => (
             <button
               type="button"
               key={item.label}
@@ -306,6 +280,7 @@ function Dashboard() {
         <header className="dashboard-header">
           <div className="search-box">
             <Icon name="search" size={20} />
+
             <input
               type="text"
               placeholder="Search anything..."
@@ -323,25 +298,35 @@ function Dashboard() {
             </button>
 
             <div className="profile-mini">
-              <div className="profile-avatar">
-                TM
-              </div>
+              <div className="profile-avatar">TM</div>
 
               <div className="profile-mini-info">
                 <strong>Thabo Molefe</strong>
                 <span>Student</span>
               </div>
 
-              <span className="profile-arrow">
-                ˅
-              </span>
+              <span className="profile-arrow">˅</span>
             </div>
           </div>
         </header>
 
         {currentPage === "My Classes" ? (
           <Classes />
-        ) : (
+        ) : currentPage === "Timetable" ? (
+          <Timetable />
+        ) : currentPage === "Attendance" ? (
+          <Attendance />
+        ) : currentPage === "Assignments" ? (
+          <Assignments />
+          ) : currentPage === "Exams" ? (
+            <Exams />
+            ) : currentPage === "Results" ? (
+               <Results />
+               ) : currentPage === "Announcements" ? (
+            <Announcements />
+            ) : currentPage === "Messages" ? (
+           <Messages />
+        ) : currentPage === "Dashboard" ? (
           <>
             <section className="welcome-banner">
               <div className="welcome-content">
@@ -365,6 +350,7 @@ function Dashboard() {
 
                 <div className="summary-content">
                   <span>My Classes</span>
+
                   <strong>6</strong>
 
                   <button
@@ -384,9 +370,18 @@ function Dashboard() {
 
                 <div className="summary-content">
                   <span>Attendance</span>
+
                   <strong>94%</strong>
 
                   <small>↑ 2% from last week</small>
+
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage("Attendance")}
+                  >
+                    View attendance
+                    <Icon name="arrow" size={16} />
+                  </button>
                 </div>
               </div>
 
@@ -397,9 +392,13 @@ function Dashboard() {
 
                 <div className="summary-content">
                   <span>Assignments</span>
+
                   <strong>3</strong>
 
-                  <button type="button">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage("Assignments")}
+                  >
                     View assignments
                     <Icon name="arrow" size={16} />
                   </button>
@@ -413,11 +412,15 @@ function Dashboard() {
 
                 <div className="summary-content">
                   <span>Results</span>
+
                   <strong>78%</strong>
 
                   <small>↑ 5% from last term</small>
 
-                  <button type="button">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage("Results")}
+                  >
                     View results
                     <Icon name="arrow" size={16} />
                   </button>
@@ -434,11 +437,14 @@ function Dashboard() {
                       <h2>Today's Timetable</h2>
                     </div>
 
-                    <div className="date-selector">
-                      Monday, 28 April 2025
-                      <span>‹</span>
-                      <span>›</span>
-                    </div>
+                    <button
+                      type="button"
+                      className="view-all"
+                      onClick={() => setCurrentPage("Timetable")}
+                    >
+                      View timetable
+                      <Icon name="arrow" size={15} />
+                    </button>
                   </div>
 
                   <div className="timetable-list">
@@ -449,7 +455,7 @@ function Dashboard() {
                       >
                         <div
                           className={`time-marker ${item.color}`}
-                        ></div>
+                        />
 
                         <div className="lesson-time">
                           {item.time}
@@ -473,23 +479,6 @@ function Dashboard() {
                     ))}
                   </div>
                 </div>
-
-                <div className="quote-card">
-                  <div>
-                    <span>—</span>
-
-                    <p>
-                      Discipline today
-                      <br />
-                      builds success tomorrow.
-                    </p>
-                  </div>
-
-                  <img
-                    src="/student6.jpg"
-                    alt="Students studying"
-                  />
-                </div>
               </div>
 
               <div className="dashboard-column middle-column">
@@ -503,6 +492,7 @@ function Dashboard() {
                     <button
                       type="button"
                       className="view-all"
+                      onClick={() => setCurrentPage("Assignments")}
                     >
                       View all
                       <Icon name="arrow" size={15} />
@@ -538,49 +528,6 @@ function Dashboard() {
                     ))}
                   </div>
                 </div>
-
-                <div className="dashboard-card quick-links">
-                  <div className="card-header">
-                    <div className="card-title">
-                      <Icon name="lightning" size={22} />
-                      <h2>Quick Links</h2>
-                    </div>
-                  </div>
-
-                  <div className="quick-link-grid">
-                    <button
-                      type="button"
-                      className="quick-link purple"
-                    >
-                      <Icon name="file" size={21} />
-                      <span>Submit Assignment</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="quick-link green"
-                    >
-                      <Icon name="results" size={21} />
-                      <span>Check Results</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="quick-link blue"
-                    >
-                      <Icon name="calendar" size={21} />
-                      <span>View Timetable</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      className="quick-link red"
-                    >
-                      <Icon name="message" size={21} />
-                      <span>Messages</span>
-                    </button>
-                  </div>
-                </div>
               </div>
 
               <div className="dashboard-column right-column">
@@ -594,6 +541,9 @@ function Dashboard() {
                     <button
                       type="button"
                       className="view-all"
+                      onClick={() =>
+                        setCurrentPage("Announcements")
+                      }
                     >
                       View all
                       <Icon name="arrow" size={15} />
@@ -608,10 +558,11 @@ function Dashboard() {
                       >
                         <span
                           className={`announcement-dot ${announcement.color}`}
-                        ></span>
+                        />
 
                         <div className="announcement-info">
                           <strong>{announcement.title}</strong>
+
                           <p>{announcement.text}</p>
                         </div>
 
@@ -620,47 +571,31 @@ function Dashboard() {
                     ))}
                   </div>
                 </div>
-
-                <div className="dashboard-card events-panel">
-                  <div className="card-header">
-                    <div className="card-title">
-                      <Icon name="calendar" size={21} />
-                      <h2>Upcoming Events</h2>
-                    </div>
-
-                    <button
-                      type="button"
-                      className="view-all"
-                    >
-                      View all
-                      <Icon name="arrow" size={15} />
-                    </button>
-                  </div>
-
-                  <div className="event-list">
-                    {events.map((event) => (
-                      <div
-                        className="event-row"
-                        key={event.title}
-                      >
-                        <div
-                          className={`event-date ${event.color}`}
-                        >
-                          <strong>{event.day}</strong>
-                          <span>{event.month}</span>
-                        </div>
-
-                        <div className="event-info">
-                          <strong>{event.title}</strong>
-                          <span>{event.details}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             </section>
           </>
+        ) : (
+          <section className="dashboard-card">
+            <div className="card-header">
+              <div className="card-title">
+                <h2>{currentPage}</h2>
+              </div>
+
+              <button
+                type="button"
+                className="view-all"
+                onClick={() => setCurrentPage("Dashboard")}
+              >
+                Back to Dashboard
+              </button>
+            </div>
+
+            <p>
+              The {currentPage.toLowerCase()} page is ready to be
+              connected. Select Dashboard, My Classes, Timetable,
+              Attendance, or Assignments to open those pages.
+            </p>
+          </section>
         )}
       </main>
     </div>

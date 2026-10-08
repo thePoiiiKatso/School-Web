@@ -1,0 +1,303 @@
+.admin-announcements-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 20px;
+  align-items: start;
+  flex-shrink: 0;
+}
+
+.admin-announcements-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.admin-announcements-side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.admin-mini-stats-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.admin-announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-announcement-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.admin-announcement-card:hover {
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+.admin-announcement-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-priority-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.admin-priority-pill.high { background: #fee2e2; color: #991b1b; }
+.admin-priority-pill.normal { background: #dbeafe; color: #1e40af; }
+.admin-priority-pill.low { background: #dcfce7; color: #166534; }
+
+.admin-audience-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.admin-announcement-card-top time {
+  margin-left: auto;
+  font-size: 0.74rem;
+  color: #94a3b8;
+}
+
+.admin-announcement-card h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.admin-announcement-card p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.admin-announcement-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: 4px;
+}
+
+.admin-announcement-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  color: #64748b;
+}
+
+.admin-announcement-author-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #1e40af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.admin-highlight-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-highlight-header {
+  padding: 20px;
+  color: #ffffff;
+}
+
+.admin-highlight-header.red { background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); }
+.admin-highlight-header.blue { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); }
+.admin-highlight-header.yellow { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
+.admin-highlight-header.green { background: linear-gradient(135deg, #16a34a 0%, #166534 100%); }
+
+.admin-highlight-header span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.admin-highlight-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.admin-highlight-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-highlight-body p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.55;
+}
+
+.admin-highlight-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+.admin-quick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-quick-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 0.82rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+.admin-quick-list-item:hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.admin-quick-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-scheduled-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-scheduled-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.admin-scheduled-date {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #dbeafe;
+  color: #1e40af;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  line-height: 1;
+  flex-shrink: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.admin-scheduled-date strong {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.admin-scheduled-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-scheduled-text strong {
+  display: block;
+  font-size: 0.82rem;
+  color: #0f172a;
+  font-weight: 600;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-scheduled-text span {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+@media (max-width: 1400px) {
+  .admin-announcements-layout { grid-template-columns: minmax(0, 1fr) 300px; }
+}
+
+@media (max-width: 1280px) {
+  .admin-announcements-layout { grid-template-columns: minmax(0, 1fr) 280px; }
+  .admin-mini-stats-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .admin-announcements-layout { grid-template-columns: 1fr; }
+}

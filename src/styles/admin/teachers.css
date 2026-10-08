@@ -1,0 +1,147 @@
+.admin-teachers-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 22px;
+  align-items: start;
+  flex-shrink: 0;
+}
+
+.admin-teachers-main {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+.admin-teachers-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-mini-stats-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.admin-quick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-quick-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.admin-overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-donut {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  max-width: 140px;
+  max-height: 140px;
+  flex-shrink: 0;
+}
+
+.admin-donut-svg {
+  width: 140px;
+  height: 140px;
+  max-width: 140px;
+  max-height: 140px;
+  transform: rotate(-90deg);
+  display: block;
+}
+
+.admin-donut-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.admin-donut-text strong {
+  font-size: 1.5rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.admin-donut-text span {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.admin-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.admin-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+.admin-legend-row strong {
+  margin-left: auto;
+  color: #0f172a;
+}
+
+.admin-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.admin-legend-dot.green { background: #16a34a; }
+.admin-legend-dot.yellow { background: #f59e0b; }
+.admin-legend-dot.red { background: #ef4444; }
+
+.admin-quote-card {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0efff 100%);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.admin-quote-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #1e3a8a;
+  font-style: italic;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.admin-quote-icon {
+  align-self: flex-end;
+  color: #2563eb;
+  opacity: 0.6;
+}
+
+@media (max-width: 1280px) {
+  .admin-teachers-layout { grid-template-columns: 1fr 260px; }
+  .admin-mini-stats-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  .admin-teachers-layout { grid-template-columns: 1fr; }
+}
